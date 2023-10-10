@@ -1,0 +1,22 @@
+{
+  "name": "goit-js-hw-09",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4"
+  },
+  "dependencies": {
+    "lodash.throttle": "^4.1.1",
+    "modern-normalize": "^1.1.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
