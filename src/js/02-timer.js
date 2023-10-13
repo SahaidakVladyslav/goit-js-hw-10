@@ -34,11 +34,11 @@ const options = {
     theme: "dark",
     // minDate: "today",
     maxDate: new Date().fp_incr(22),
-    disable: [
-        function (date) {
-            return (date.getDay() === 0 || date.getDay() === 6);
-        }
-    ],
+    // disable: [
+    //     function (date) {
+    //         return (date.getDay() === 0 || date.getDay() === 6);
+    //     }
+    // ],
     locale: {
         "firstDayOfWeek": 1 // start week on Monday
     },
@@ -48,11 +48,12 @@ const options = {
             Notiflix.Report.failure('ERROR', 'Please choose a date in the future', 'Close');
         }
         const objectDate = convertMs(selectedDates[0])
-        console.log(objectDate.days - 1943);
-        inputDays.textContent = `${objectDate.days - 1943}`
-        inputHours.textContent = `${convertMs(selectedDates[0]).hours}`
-        inputMinutes.textContent = `${convertMs(selectedDates[0]).minutes}`
-        inputSeconds.textContent = `${convertMs(selectedDates[0]).seconds}`
+        console.log(objectDate)
+        console.log(parseFloat((objectDate.days / 365).toFixed(1)));
+        inputDays.textContent = `${parseFloat((objectDate.days).toFixed(1)) - 19643}`
+        inputHours.textContent = `${parseFloat((objectDate.hours).toFixed(1))}`
+        inputMinutes.textContent = `${parseFloat((objectDate.minutes).toFixed(1))}`
+        inputSeconds.textContent = `${parseFloat((objectDate.seconds).toFixed(1))}`
     },
 };
 
@@ -60,15 +61,19 @@ flatpickr(inputEl, options);
 
 
 
-
-// function padStart({ days, hours, minutes, seconds }) {
-//     const daysNum = days / 24;
-//     const hoursNum = hours / 60;
-//     const minutesNum = minutes / 60;
-//     const secondsNum = seconds / 60;
-//     return { daysNum, hoursNum, minutesNum, secondsNum }
-// }
-
+function padStart({ days, hours, minutes, seconds }) {
+    setInterval(function ({ days, hours, minutes, seconds }) {
+        console.log("getDay(): ", date.getDay());
+        // Возвращает год из 4 цифр
+        console.log("getFullYear(): ", date.getFullYear());
+        // Возвращает час
+        console.log("getHours(): ", date.getHours());
+        // Возвращает минуты
+        console.log("getMinutes(): ", date.getMinutes());
+        // Возвращает секунды
+        console.log("getSeconds(): ", date.getSeconds());
+    }, 1000);
+}
 function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
