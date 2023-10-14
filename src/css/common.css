@@ -16,3 +16,22 @@ img {
   display: block;
   max-width: 100%;
 }
+input {
+  margin-left: 20px;
+}
+.timer {
+  display: flex;
+  margin-top: 10px;
+}
+.timer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+}
+.timer div:not(lust-child){
+  margin-left: 15px;
+}
+.value {
+  font-size: 35px;
+}
