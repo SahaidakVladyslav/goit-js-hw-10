@@ -11,6 +11,7 @@ const inputHours = document.querySelector('[data-hours]')
 const inputMinutes = document.querySelector('[data-minutes]')
 const inputSeconds = document.querySelector('[data-seconds]')
 
+const todayDate = new Date()
 
 let timeUpdateTime = null;
 
@@ -106,12 +107,14 @@ const options = {
     },
     onClose(selectedDates) {
         console.log(selectedDates[0]);
-        if (selectedDates[0] < date) {
-
+        if (selectedDates[0].getTime() <= todayDate.getTime()) {
             Notiflix.Report.failure('ERROR', 'Please choose a date in the future', 'Close');
+            clearInterval(timeUpdateTime);
+            btnStart.style.opacity = 0.5;
+            return btnStart.style.pointerEvents = 'none';
+
         }
         const objectDate = convertMs(selectedDates[0])
-        clearInterval(timeUpdateTime);
         inputDays.textContent = `${parseFloat((objectDate.days).toFixed(1)) - 19643}`
         inputHours.textContent = `${parseFloat((objectDate.hours).toFixed(1))}`
         inputMinutes.textContent = `${parseFloat((objectDate.minutes).toFixed(1))}`
@@ -120,10 +123,7 @@ const options = {
             btnStart.style.pointerEvents = 'auto';
             btnStart.style.opacity = 1;
         }
-        if (+inputDays.textContent <= 1) {
-            btnStart.style.pointerEvents = 'none';
-            btnStart.style.opacity = 0.5;
-        }
+
     },
 };
 flatpickr(inputEl, options);
