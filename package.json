@@ -2,9 +2,14 @@
   "name": "goit-js-hw-09",
   "version": "1.0.0",
   "description": "",
+  "source": "src/index.html",
+  "homepage": "https://SahaidakVladyslav.github.io/goit-js-hw-09/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-09/"
+  },
+    "bugs": {
+    "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "keywords": [],
   "author": "",
