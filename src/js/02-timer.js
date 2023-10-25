@@ -107,15 +107,15 @@ const options = {
     },
     onClose(selectedDates) {
         console.log(selectedDates[0]);
+        clearInterval(timeUpdateTime);
+
         if (selectedDates[0].getTime() <= todayDate.getTime()) {
             Notiflix.Report.failure('ERROR', 'Please choose a date in the future', 'Close');
-            clearInterval(timeUpdateTime);
             btnStart.style.opacity = 0.5;
             return btnStart.style.pointerEvents = 'none';
-
         }
         const objectDate = convertMs(selectedDates[0])
-        inputDays.textContent = `${parseFloat((objectDate.days).toFixed(1)) - 19643}`
+        inputDays.textContent = `${parseFloat((objectDate.days).toFixed(1)) - 19653}`
         inputHours.textContent = `${parseFloat((objectDate.hours).toFixed(1))}`
         inputMinutes.textContent = `${parseFloat((objectDate.minutes).toFixed(1))}`
         inputSeconds.textContent = `${parseFloat((objectDate.seconds).toFixed(1))}`
