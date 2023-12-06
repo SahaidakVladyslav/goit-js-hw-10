@@ -77,6 +77,7 @@ function createPromise(position, initialDelay, subsequentDelay) {
 
 formEl.addEventListener('submit', (event) => {
     event.preventDefault();
+    formEl.reset();
     const amountStep = amountInputEl.value;
     const initialDelay = delayInputEl.value;
     const subsequentDelay = stepInputEl.value;
@@ -87,7 +88,5 @@ formEl.addEventListener('submit', (event) => {
         })
         .catch((error) => {
             console.log('Promise rejected:', error);
-        }).finally(() => {
-            console.log("Дорогий ментор, чи можу я після всього осьцого вважати себе ойтішніком???")
         })
 });
