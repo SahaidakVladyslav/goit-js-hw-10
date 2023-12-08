@@ -23,10 +23,10 @@ const btnAuto = () => {
 };
 
 const emptyTextContent = () => {
-    inputDays.textContent = '0';
-    inputHours.textContent = '0';
-    inputMinutes.textContent = '0';
-    inputSeconds.textContent = '0';
+    inputDays.textContent = '00';
+    inputHours.textContent = '00';
+    inputMinutes.textContent = '00';
+    inputSeconds.textContent = '00';
 };
 
 function convertMs(ms) {
@@ -83,7 +83,6 @@ const options = {
         clearInterval(timeUpdateTime);
         if (selectedDates[0].getTime() <= options.defaultDate.getTime()) {
             Notiflix.Notify.failure('Please choose a date in the future');
-
             emptyTextContent()
             btnNone();
         } else {
@@ -91,7 +90,6 @@ const options = {
             milliseconds = +selectedDates[0].getTime() - +options.defaultDate.getTime()
             valueDato = convertMs(milliseconds)
             proDato = padStartFunction(valueDato)
-            console.log(milliseconds)
 
             inputDays.textContent = `${proDato.proDays}`;
             inputHours.textContent = `${proDato.proHours}`;
