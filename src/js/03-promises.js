@@ -3,22 +3,32 @@ import flatpickr from "flatpickr";
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 
-
 const delayInputEl = document.querySelector('[name="delay"]');
 const stepInputEl = document.querySelector('[name="step"]');
 const amountInputEl = document.querySelector('[name="amount"]');
 const formEl = document.querySelector('.form');
+const btnStart = document.querySelector('button[type="submit"]');
 const shouldResolve = Math.random() > 0.3;
 let timerId = null;
 let count = 0;
 let timeDelay = 0;
 let counterAmount = 0;
+
+const btnNone = () => {
+    btnStart.style.opacity = 0.5;
+    btnStart.style.pointerEvents = 'none';
+};
+
+const btnAuto = () => {
+    btnStart.style.pointerEvents = 'auto';
+    btnStart.style.opacity = 1;
+};
+
+
 function createPromise(position, initialDelay, subsequentDelay) {
     return new Promise((resolve, reject) => {
         timeDelay = initialDelay;
         counterAmount = 1
-
-
         function finallyDesition() {
             if (count !== 0) {
                 timerId = setInterval(() => {
@@ -40,6 +50,8 @@ function createPromise(position, initialDelay, subsequentDelay) {
                     count += 1;
                     if (count >= position) {
                         count = 0;
+                        formEl.reset();
+                        btnAuto()
                         clearInterval(timerId);
                     }
                 }, subsequentDelay)
@@ -59,14 +71,14 @@ function createPromise(position, initialDelay, subsequentDelay) {
                         );
                         console.log(`виклик зробився за такий час ${initialDelay}`)
                         finallyDesition()
-                        resolve('Kurwo! To praca!');
+                        resolve('To praca!');
                     } else {
                         Notiflix.Notify.failure(
                             `❌ Rejected promise ${counterAmount} in ${initialDelay}ms`
                         );
                         console.log(`виклик зробився за такий час ${initialDelay}`)
                         finallyDesition()
-                        reject('Kurwo! To NE praca!');
+                        reject('To NE praca!');
                     }
                 }, initialDelay)
             }
@@ -77,7 +89,7 @@ function createPromise(position, initialDelay, subsequentDelay) {
 
 formEl.addEventListener('submit', (event) => {
     event.preventDefault();
-    formEl.reset();
+    btnNone()
     const amountStep = amountInputEl.value;
     const initialDelay = delayInputEl.value;
     const subsequentDelay = stepInputEl.value;
@@ -90,3 +102,5 @@ formEl.addEventListener('submit', (event) => {
             console.log('Promise rejected:', error);
         })
 });
+
+console.log()
